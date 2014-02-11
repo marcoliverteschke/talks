@@ -4,6 +4,35 @@
 
 ### Toolchain
 
+#### Was **muss** ein Front-End Entwickler beherrschen?
+
+Die Frage lässt sich leider beim besten Willen nicht allgemeingültig beantworten. Wäre ja auch viel zu einfach. Es folgen stattdessen ein paar Hinweise und Nice-to-haves, die helfen dürften, einen Entwickler besser einzuschätzen.
+
+Es gibt keine spezifischen Tools, die *jeder* Developer beherrschen sollte, weil der Workflow jeder Firma, jedes Teams, jedes Entwicklers grundverschieden sein kann. Jenseits von der Erwartung, dass der Entwickler mit absoluter Standardsoftware wie Office und Photoshop umgehen können sollte, wird es schnell schwammig. Arbeitet der Entwickler in TextMate? BBEdit? Textpad++? Eclipse? NetBeans? Letztlich ist es egal, solange am Ende guter Code dabei herumkommt.
+
+Der dabei entstehende Output sollte valide sein (HTML ist ein Muss, CSS wäre schön). Der Code sollte so gut es geht selbsterklärend sein (Was macht Variable i?) und wenn’s geht auch ein wenig dokumentiert, zumindest an potentiellen Knackpunkten.
+
+Der Entwickler sollte auch eine Strategie für Cross-Browser-Output haben. Sei es, dass er gezielt per Conditional Comments Internet Explorer Versionen anspricht. Oder dass er über Progressive Enhancement / Graceful Degradation mit Tools wie Modernizr dafür sorgt, dass Browser immer nur versuchen, eine Seite so darzustellen, wie ihre Fähigkeiten es auch zulassen.
+
+Kaum vermeiden lässt sich heutzutage auch, dass der Entwickler Ideen hat, mit dem mobile Web umzugehen. Soll heißen, er kann Seiten für Tablets und Smartphones umsetzen, z.B. unter Verwendung von Media Queries. Er weiß, welche Bedienkonzepte für Touch-Displays geeignet sind. Er hat Lösungen parat für Problemfälle wie die Darstellung von großen Tabellen auf kleinen Bildschirmen.
+
+Zu guter letzt ist es nur hilfreich, wenn der Entwickler mit mindestens *einem* Versionierungssystem wie CVS, SVN / Subversion oder Git gearbeitet hat. Welches genau? Egal, solange er sich überhaupt angewöhnt hat, seine Arbeit brav und wie ein echter Teamplayer einzuchecken.
+
+#### Mein ganz persönliches Toolkit
+
+Mein persönlicher Arbeitsablauf unterscheidet sich von Projekt zu Projekt, je nachdem ob der Schwerpunkt der Arbeit mehr im Front-End oder im Back-End liegt. Generell kann ich sagen, dass ich Webseiten mit einer Handvoll Tools entwickele:
+
+* TextMate 2 für Mac OS X ist der Code meiner Wahl
+* als Textumgebung verwende ich einen MAMP-Server (Mac, Apache, MySQL, PHP)
+* jQuery kommt in fast jedem Projekt zum Einsatz, ist bei CMS wie Drupal sowieso mit dabei
+* LESS ist der CSS-Präprozessor in unserem Haus
+* LESS Elements ist eine bezaubernde Sammlung an LESS-Mixins für Standard-Aufgaben wie Schatten, Animationen etc.
+* mit Modernizr befrage ich den Browser nach seinen Fähigkeiten und kann diese gezielt per CSS und JavaScript ansprechen
+* als CSS Reset verwende ich Normalize, da es das Default-Styling von Elementen erhält und lediglich für alle Browser angleicht
+* Selectivizr ermöglicht den Einsatz moderner CSS-Selektoren auch auf älteren Browsern
+
+Diese Bibliotheken und Skripte finden sich eigentlich in jedem Projekt wieder, dass ich bearbeite, egal ob sie in einem Drupal-Theme liegen oder einer PHP-Anwendung.
+
 ### Recruiting
 
 #### Wie erkennt man einen guten Front-End Developer?
@@ -41,6 +70,22 @@ Die Gelegenheit, sich die zwei Ausbildungsjahre anrechnen zu lassen und in nur e
 Seit 2007 ist er bei der *PLANWERK 6 websolutions GmbH* in der romantischen Nicht-Köln-Stadt Düsseldorf als **Entwickler für Internet-Anwendungen**, professioneller HTML-Schubser, CSS-Friseur, JavaScript-Bändiger, PHP-Töpfer und Datenbank-Datenbanker tätig und in alle Schritte der Entstehung von Webseiten eingebunden, von Akquise und Planung, Design und Entwicklung bis zu Übergabe und Support.
 
 ### Links
+
+#### Toolchain
+
+Conditional Comments
+Conditional HTML
+Progressive Enhancement
+Graceful Degradation
+Modernizr
+TextMate
+MAMP
+LESS
+LESS Elements
+jQuery
+Modernizr
+Normalize
+Selectivizr
 
 #### Recruiting
 
