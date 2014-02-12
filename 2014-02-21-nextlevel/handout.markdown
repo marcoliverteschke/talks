@@ -2,6 +2,133 @@
 
 ## 21.02.2014 @ next level GmbH
 
+### Die Basics
+
+#### HTML in Blitzgeschwindigkeit
+
+#### CSS in Blitzgeschwindigkeit
+
+#### JavaScript in Blitzgeschwindigkeit
+
+#### Semantisches HTML
+
+#### HTML5
+
+#### CSS 3 und mehr
+
+### Für Fortgeschrittene
+
+#### Im Browser
+
+##### CSS-Floats
+
+##### CSS-Präprozessoren
+
+Seit ein paar Jahren groß im Kommen sind CSS-Präprozessoren. Erwähnenswert sind hier zum Beispiel LESS, Sass und Stylus. All diesen Tools gemein ist, dass nicht mehr reines CSS geschrieben wird. Vielmehr schreibt der Entwickler eine Datei in einer dem jeweiligen Präprozessor eigenen Syntax. Diese wird dann vor der Auslieferung an den Browser von einem Tool auf der Kommandozeile, einem JavaScript oder einem PHP-Skript in CSS umgewandelt.
+
+Was ist an Präprozessoren jetzt so toll? Auf großen Seiten kann CSS schnell ausufern. Selektoren können ewig lang werden. Viel zu viele Elemente teilen sich gemeinsame Styles, die sich nun immer wieder wiederholen. Werte, z.B. Farben, die aufeinander abgestimmt sind, müssen bei Änderung des Grundwertes neu berechnet und eingetragen werden, gerne auch wieder an 50 Stellen im Code.
+
+Präprozessoren können hier sehr bei der Übersichtlichkeit des zu bearbeitenden Codes helfen. Sie bieten Features wie **verschachtelte Regeln**:
+
+```
+#header {
+	color: black;
+	.navigation {
+		font-size: 12px;
+	}
+	.logo {
+		width: 300px;
+	}
+}
+
+wird zu
+
+#header {
+	color: black;
+}
+
+#header .navigation {
+	font-size: 12px;
+}
+
+#header .logo {
+	width: 300px;
+}
+```
+
+**Variablen:**
+
+```
+$text-color: #444444;
+
+body, a {
+	color: $text-color;
+}
+
+wird zu
+
+body, a {
+	color: #444444;
+}
+
+```
+
+**Mixins:**
+
+```
+.demo-box() {
+	border: 1px solid #000000;
+	// noch mehr Zeug
+}
+
+#sidebar {
+	.box {
+		.demo-box();
+	}
+}
+
+footer {
+	.node-otherthing {
+		.demo-box();
+	}
+}
+
+wird zu 
+
+#sidebar .box {
+	border: 1px solid #000000;
+	// noch mehr Zeug
+}
+
+footer .node-otherthing {
+	border: 1px solid #000000;
+	// noch mehr Zeug
+}
+```
+
+**Berechnungen und Helfer aller Art:**
+
+```
+a:hover {
+	color: lighten(10%, $text-color);
+	padding: 13px + 0.5em;
+}
+
+wird zu
+
+a:hover {
+	color: #5E5E5E;
+	padding: 19px;
+}
+```
+
+Diese und andere Features von CSS-Präprozessoren (im Fall dieser Beispiele LESS) bieten dem Developer ein sehr mächtiges Werkzeug, um den an sich starren CSS-Code dynamischer und effizienter zu entwickeln.
+
+##### AJAX
+
+#### Auf dem Server
+
+
 ### Toolchain
 
 #### Was **muss** ein Front-End Entwickler beherrschen?
@@ -70,6 +197,12 @@ Die Gelegenheit, sich die zwei Ausbildungsjahre anrechnen zu lassen und in nur e
 Seit 2007 ist er bei der *PLANWERK 6 websolutions GmbH* in der romantischen Nicht-Köln-Stadt Düsseldorf als **Entwickler für Internet-Anwendungen**, professioneller HTML-Schubser, CSS-Friseur, JavaScript-Bändiger, PHP-Töpfer und Datenbank-Datenbanker tätig und in alle Schritte der Entstehung von Webseiten eingebunden, von Akquise und Planung, Design und Entwicklung bis zu Übergabe und Support.
 
 ### Links
+
+#### Für Fortgeschrittene
+
+LESS
+Sass
+Stylus
 
 #### Toolchain
 
