@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		#eins {
+			background-color: #ff0000;
+		}
+
+		#zwo {
+			background-color: #00ff00;
+		}
+
+		#drei {
+			background-color: #0000ff;
+			clear: both;
+		}
+	
+		div#eins, div#zwo {
+			float: left;
+			width: 50%;
+		}
+		
+		@media screen and (max-width: 480px) {
+			div#eins, div#zwo {
+				float: none;
+				width: auto;
+			}
+		}
+	</style>
+</head>
+<body>
+<div id="eins">Mein erster Abschnitt!</div>
+<div id="zwo">Mein zweiter Abschnitt!</div>
+<div id="drei">Mein dritter Abschnitt!</div>
+</body>
+</html>

@@ -323,7 +323,7 @@ In XML-verwandten Auszeichnungssprachen besteht die Möglichkeit, ein Dokument o
 ```
 
 Sind die Elemente in MathML noch alle eindeuting anders als in HTML benannt, gibt es leider nichts was verhindert, dass wir irgendwann mit einer anderen Syntax zu tun haben, nennen wir sie mal UnfugML, in der z.B. dem `<a>`-Element ein ganz anderer Zweck gegeben wird. Bis zur Einführung von CSS-Namespaces wäre dieses UnfugML-`<a>` wie HTML-`<a>`s dargestellt worden. Dank CSS-Namespaces können wir am Anfang eines separaten Stylesheet aber folgendes sagen:
-	
+
 ```
 @namespace 'MistML';
 ```
@@ -336,20 +336,110 @@ Alle folgenden Styles gelten nun nur für Elemente, die in einem Eltern-Element 
 
 ##### CSS-Floats
 
-@TODO 
+Jedes HTML-Element ist von einem Rechteck umgeben. Die einzelnen Bestandteile dieses Rechtecks (eigentlicher Inhalt, Innenabstand, Rahmen, Außenabstand) sind im sogenannten Box-Model definiert.
 
-* Elemente folgen der Dokumentstruktur
-* Inline folgt dem Textfluss
-* Block nimmt sich seinen Platz
-* Text soll um ein Bild fließen
-* Floats lassen Block-Element links oder rechts "schweben", Fluss orientiert sich darum herum
-* angefangen, Floats für Layouts zu verwenden
-* mehr Flexibilität als mit Tabellen
-* natürlich nur ein Hack
-* neuere CSS-Layout-Modelle
-	* inline-block => folgt Textfluss, stylebar wie ein Block
-	* Flexbox => Möglichkeit, einer Seite ein Box-Layout zu verpassen, Kinder in Spalten anzuordnen
+@TODO Grafik Box Model wie SelfHTML
 
+Über die CSS-Eigenschaft `display` wird definiert, wie die Box eines Elements sich in Bezug auf ihre Umgebung verhalten soll.
+
+`display: block` sorgt dafür, dass das Element einen Absatz erzeugt. Das heißt zwischen dem aktuellen und dem folgenden Element wird ein Zeilenumbruch erzeugt. Innen- und Außenabstände werden horizontal wie vertikal berücksichtigt.
+
+@TODO Grafik display block
+
+`display: inline` lässt das Element dem umgebenden Textfluss folgen. Dies hat auch zur Folge, dass nur horizontale Abstände berücksichtigt werden.
+
+@TODO Grafik display inline
+
+Die etwas neuere (CSS 2.1) Deklaration `display: inline-block` bildet eine Kombination aus den beiden vorherigen Werten, indem das Element zwar dem umgebenden Textfluss folgt, gleichzeitig aber alle Abstände berücksichtigt werden, als handelte es sich um ein Block-Element.
+
+@TODO Grafik display inline-block
+
+Häufig kommen wir in Szenarien, in denen ein Element wie ein Block formatiert werden soll, gleichzeitig aber innerhalb des Textflusses nach einer Seite hin ausgerichtet sein soll. Das klassische Beispiel ist hier ein Bild, das Abstände nach außen haben und in einem Textabsatz rechts in der Ecke sitzen soll:
+
+@TODO floatendes Bild
+
+Hier kommt die CSS-Eigenschaft `float` zum Einsatz. Sie ermöglicht es, Elemente aus dem normalen Textfluss zu lösen und sie links oder rechts „schweben“ zu lassen. Der umgebende Text umfließt dieses schwebende Element daraufhin.
+
+Der Einsatz von `float` ist auch beim Layout von Seiten gebräuchlich. Früher wurden Seiten häufig mit Hilfe von Tabellen strukturiert. Gegen den Einsatz von Tabellen für Layouts spricht natürlich, dass wir hier ein Element für einen ganz anderen als den gedachten Zweck missbrauchen. Tabellen sind für die Formatierung tabellarischer Daten da, sonst nichts. Zudem sind Tabellen zwar komfortabel aufzubauen, gleichzeitig aber sehr starr in ihrer Aufteilung.
+
+Mit `float`enden Elementen sind wir hier flexibler. Angenommen wir haben diese Elemente:
+
+```
+<div id="eins">Mein erster Abschnitt!</div>
+<div id="zwo">Mein zweiter Abschnitt!</div>
+<div id="drei">Mein dritter Abschnitt!</div>
+```
+
+Mit Hilfe von `float` und Media Queries können wir diese Elemente dynamisch und responsiv layouten.
+
+Bauen wir uns ein einfaches Zwei-Spalten-Layout:
+
+```
+<style>
+	#eins {
+		background-color: #ff0000;
+	}
+
+	#zwo {
+		background-color: #00ff00;
+	}
+
+	#drei {
+		background-color: #0000ff;
+		clear: both;
+	}
+
+	div#eins, div#zwo {
+		float: left;
+		width: 50%;
+	}
+</style>
+```
+
+Ergänzend eine Media query, um ab einer bestimmten Breite jede Spalte in eine eigene Zeile in voller Breite umspringen zu lassen, weil wir alle kleine Bildschirme in der Tasche haben:
+
+```
+@media screen and (max-width: 480px) {
+	div#eins, div#zwo {
+		float: none;
+		width: auto;
+	}
+}
+```
+
+Diese Lösung ist natürlich schon und gut und funktioniert auch seit Jahren in den meisten Fällen. Aber letzendlich wird auch hier natürlich lediglich eine Eigenschaft zum Ausrichten von Elementen im Textfluss zweckentfremded, um damit ganze Seiten zu layouten.
+
+Dieses Problem will das Flexbox-Modul lösen, das seit Kurzem in allen aktuellen Browserversionen unterstützt wird.
+
+Unsere Elemente strukturieren wir nun wie folgt:
+
+```
+<div class="flex-container">
+	<div id="eins">Mein erster Abschnitt!</div>
+	<div id="zwo">Mein zweiter Abschnitt!</div>
+</div>
+<div id="drei">Mein dritter Abschnitt!</div>
+```
+
+Nachdem wir dem Container gesagt haben, dass er Flexbox anwenden soll, können wir seinen Kindern relative Breiten mitgeben:
+
+```
+.flex-container {
+	display: -webkit-flex;
+}
+
+div#eins {
+	-webkit-flex: 2;
+	flex: 2;
+}
+
+div#zwo {
+	-webkit-flex: 1;
+	flex: 1;
+}
+```
+
+Die Breite des Containers wird basierend auf den `flex`-Werten entsprechend aufgeteilt.
 
 ##### CSS-Präprozessoren
 
@@ -455,70 +545,128 @@ Diese und andere Features von CSS-Präprozessoren (im Fall dieser Beispiele LESS
 
 ##### AJAX
 
-@TODO
+Klassische Webseiten werden seit jeher synchron abgerufen und angezeigt. Wir geben eine Adresse an, der Browser fragt die Seite beim Server an, erhält eine Antwort und stellt die erhaltenen Informationen dar.
 
-* Webseiten normalerweise synchron
-* Anfrage => Antwort => Seite fertig
-* laaangweilig
-* Asynchronous JavaScript and XML
-* Seitenteile dynamisch anfragen
-	* z.B. Newsbox aktuell halten
-	* Chats
-	* FB lädt ganze Komponenten asynchron
-* ja und wie?
-	* XMLHttpRequest
-	* seit IE 5, andere Browser haben's nachgemacht
-	* schickt per JavaScript eine Anfrage an den Server, kann die empfangenen Daten direkt verarbeiten
-* jQuery und andere Libraries haben eingebaute AJAX-Wrapper
+Mal ehrlich, das ist doch langweilig, oder?
 
+Klar, aber deswegen gibt es ja AJAX (Asynchronous JavaScript and XML). AJAX bietet Entwicklern die Möglichkeit, Informationen vom Server abzurufen, ohne dafür die Seite komplett neu laden zu müssen. So werden zum Beispiel solche Szenarien möglich:
+
+* wir haben einen Newsticker auf unserer Seite, der live mit aktuellen Meldungen befüllt wird
+* wir bauen uns einen Chat
+* Facebook (wer es nicht kennt, kann auf Bing danach suchen) lädt den Großteil seiner Seitenbestandteile erst nach und nach, z.B. den Newsfeed und die Ticker- / Chat-Kontakte-Spalte
+
+Und wie geht das nun?
+
+Seit Internet Explorer 5 existiert das XMLHttpRequest-Objekt in JavaScript. Andere Browser haben dieses Feature wegen extremer Geilheit schnell nachgebaut. Dieses Objekt kann im Code einer JavaScript-Anwendung konfiguriert werden, und schickt dann eine Anfrage an den Server. Je nach erhaltener Antwort kann das Skript dann entsprechend reagieren:
+
+```
+var xmlHttp = null;
+try {
+    // Mozilla, Opera, Safari sowie Internet Explorer (ab v7)
+    xmlHttp = new XMLHttpRequest();
+} catch(e) {
+    try {
+        // MS Internet Explorer (ab v6)
+        xmlHttp  = new ActiveXObject("Microsoft.XMLHTTP");
+    } catch(e) {
+        try {
+            // MS Internet Explorer (ab v5)
+            xmlHttp  = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch(e) {
+            xmlHttp  = null;
+        }
+    }
+}
+if (xmlHttp) {
+    xmlHttp.open('GET', 'beispiel.xml', true);
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4) {
+            alert(xmlHttp.responseText);
+        }
+    };
+    xmlHttp.send(null);
+}
+```
+
+Das ist natürlich eine ganze Menge Code für eine simple und auch recht häufig gebrauchte Anfrage. Außerdem müssen wir natürlich auch entsprechend reagieren, wenn der readyState andere Werte annimmt. Deswegen haben JavaScript-Libraries wie jQuery fertige AJAX-Helfer-Funktionen an Bord, die das inzwischen alltäglich gewordene Absenden asynchroner Abfragen bedeutend erleichtern:
+
+```
+$.get('beispiel.xml', function(data){
+	alert(data);
+});
+```
 
 #### Auf dem Server
 
-* Front-End im Browser, Back-End auf dem Server
-* Was wo liegt, ist ganz unterschiedlich
-	* klassisch
-		* alles liegt auf dem Server
-		* Anfrage auf Server z.B. in PHP verarbeitet
-		* Datenbankabfragen
-		* HTML-Seiten werden gebaut
-		* HTML wird an Browser geschickt
-		* Browser fragt verlinktes CSS, JS, Medien ab
-	* moderner
-		* Server liefert fast leere HTML-Seite aus
-		* CSS, JS
-		* JS enthält Großteil der Anwendungslogik
-		* JS fragt vom Server Daten ab
-		* JS injiziert Templates für Seitenelemente
-	* oder auch
-		* Datenbank im Browser, ggf. Synchronisierung mit Remote Storage
-* Was läuft wo?
-	* im Grunde egal, es muss nur eine Runtime geben
-		* Client
-			* JavaScript
-			* Flash
-			* Java
-		* Server
-			* PHP
-			* ASP
-			* Java
-			* JavaScript
-* JavaScript?
-	* node.js
-		* seit 2009
-		* nutzt die JavaScript-Engine von Chrome
-		* node verteilt seine Arbeit (I/O, Rückgabe) asynchron, schnell
-		* kann Websockets => Push vom Server an den Browser
-* CMS für HTML-Schubser
-	* CMS sind wichtig
-	* die meisten Seiten basieren auf CMS
-	* Front-End-Entwickler müssen verstehen, welchen Output das CMS produziert
-	* Front-End-Entwickler müssen die Möglichkeiten des CMS verstehen, um ggf. Alarm schlagen zu können
-	* Front-End-Entwickler müssen zumindest das Templating System ihres CMS verstehen
-* Server-Musts für CSS-Friseure
-	* kommt auf die Arbeitsteilung im Unternehmen an
-	* bei völliger Trennung kann dem Front-End-Dev egal sein, was im Back-End passiert
-	* i.d.R. sinnvoll das System zu verstehen, auf dem man arbeitet => Templating, Abbildung von Workflows, Kommunikation mit Back-End-Devs
+##### Front-End / Back-End
 
+Da im Laufe der Jahre die Fähigkeiten der geläufigen Browser immer weiter angewachsen sind, hat sich auch die Struktur vieler moderner Web-Anwendungen verändert.
+
+Die klassische Web-basierte Anwendung oder auch eine normale Webseite ist meist nach einem ähnlichen Schema konzipiert:
+
+* Daten und Programmlogik liegen auf dem Server
+* Anfragen werden auf Server z.B. in PHP verarbeitet
+* HTML-Seiten werden gebaut
+* HTML wird an Browser geschickt
+* Browser fragt verlinktes CSS, JS, Medien ab
+* da ist die Seite
+
+Moderne Anwendungen können inzwischen in großen Teilen oder sogar komplett Client-seitig existieren, der Server wird zum reinen Daten-Lieferanten:
+
+* Server liefert eine fast leere HTML-Seite aus
+* CSS und JavaScript werden abgerufen
+* JavaScript enthält Großteil der Anwendungslogik
+* JavaScript fragt vom Server Daten ab
+* JavaScript injiziert Templates für Seitenelemente
+
+HTML5 Features wie Datenbanken im Browser können theoretisch sogar die Anfragen in Richtung des Servers minimiert werden, indem wir die Datenbank einmal beim initialen Aufruf laden und danach auf die im Browser gelagerten Daten zurückgreifen. Damit wäre unsere Anwendung, solange die Daten aktuell sind, unabhängig von der Qualität des verfügbaren Netzwerks.
+
+Was hier letztendlich gesagt sein soll ist, dass es ganz auf die jeweilige Anwendung ankommt, wo das Front-End und das Back-End ihre Grenzen haben.
+
+##### Welche Technologien wo?
+
+Grundsätzlich lässt sich sagen, dass in der theorie so ziemlich jede Programmiersprache im Front- wie im Back-End laufen *könnte*, solange die entsprechende Laufzeitumgebung vorhanden ist. Wenn irgendwer bei Microsoft einen Hitzschlag erleidet und Internet Explorer 12 mit einer Umgebung für COBOL ausliefert, ist COBOL schlagartig eine Front-End-Sprache.
+
+Client- wie Server-seitig haben sich im Laufe der Zeit einige Sprachen als Standards etabliert. Im Browser sind dies:
+
+* JavaScript, nativ in fast allen Browsern
+* Flash bzw. ActionScript, mit dem entsprechenden Plugin versteht sich
+* Java, ebenfalls mit Plugin
+
+Auf dem Server ist die Vielfalt deutlich größer, hier sind unter anderem verbreitet:
+
+* PHP
+* Java
+* C# in ASP.NET
+* Ruby
+* Perl
+* JavaScript
+
+Moment, JavaScript? Auf dem Server?
+
+Ja, im Jahr 2009 wurde die erste Version der Node.js-Plattform veröffentlicht. Node.js nutzt die von Google ursprünglich für den Chrome-Browser entwickelte V8 JavaScript-Engine, um seinen Code auszuführen.
+
+Die Architektur von Node.js ist darauf ausgelegt, Anfragen und Antworten möglichst schnell vom zentralen Server-Prozess fort zu delegieren. So ist die Server-Anwendung schneller wieder ansprechbar als in anderen Architekturen, in denen eine Anfrage einen kompletten Prozess belegt, bis sie komplett beantwortet ist.
+
+Zudem ist das Umfeld von Node.js voll von Implementierungen von WebSockets. WebSockets ist grob gesagt eine Standleitung vom Browser zum Server. War es bisher so, dass eine Anwendung, die aktuelle Daten vom Server wollte, regelmäßig AJAX-Anfragen stellen musste, so bieten WebSockets die Möglichkeit, dass der Server bei Änderungen entsprechende Informationen direkt an verbundene Clients pusht.
+
+##### CMS für HTML-Schubser
+
+>  Wie wichtig sind Contentmanagement-Systeme in der Frontend Entwicklung […]?
+
+Content Management Systeme (CMS) sind natürlich sehr wichtig. Extrem viele Webseiten basieren auf CMS wie Wordpress, TYPO3, Drupal etc.
+
+Front-End-Entwickler sollten sich in den in ihrem Umfeld gebräuchlichen CMS gut auskennen. Schließlich sind sie in gewisser Hinsicht dem jeweiligen System ausgeliefert, bzw. dem Output, den das jeweilige CMS produziert.
+
+Das heißt, es liegt oft auch in der Verantwortung des Entwicklers zu erkennen, ob ein vorgeschlagenes Design so umsetzbar ist, oder ob irgendeine Eigenart von Drupal verhindert, dass wir bestimmte Elemente unbedingt an eine bestimmte Stelle setzen.
+
+Und wenn es um die eigentliche Umsetzung geht, muss der Entwickler natürlich das Templating-System des jeweiligen CMS kennen. Was nützt schließlich das tollste HTML, wenn ich nicht weiß, wie ich daraus ein funktionierendes Wordpress-Theme baue?
+
+##### Server-Musts für CSS-Friseure
+
+> […] und wie viel Backend sollte ein Frontend Dev können?
+
+Ganz ehrlich? Das kommt meiner Meinung nach sehr auf die Arbeitsteilung im konkreten Unternehmen an. Ich persönlich würde auch in einer reinen Front-End-Position so viel wie möglich von Back-End des Systems, mit dem ich arbeite, verstehen wollen, einfach weil ich ein Gefühl dafür haben will, woher die Inhalte kommen, die ich strukturieren und stylen soll. Ich denke, dass es den meisten Entwicklern so gehen würde. Aber verallgemeinern lässt sich das sicher nicht.
 
 ### Toolchain
 
@@ -603,6 +751,7 @@ Die ganzen CSS-Dinger
 
 #### Für Fortgeschrittene
 
+CSS Display MDN
 LESS
 Sass
 Stylus

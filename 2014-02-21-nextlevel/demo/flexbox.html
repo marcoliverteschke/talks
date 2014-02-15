@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		.flex-container {
+			display: -webkit-flex;
+		}
+	
+		#eins {
+			background-color: #ff0000;
+		}
+
+		#zwo {
+			background-color: #00ff00;
+		}
+
+		#drei {
+			background-color: #0000ff;
+		}
+	
+		div#eins {
+			-webkit-flex: 2;
+			flex: 2;
+		}
+
+		div#zwo {
+			-webkit-flex: 1;
+			flex: 1;
+		}
+		
+		@media screen and (max-width: 480px) {
+			.flex-container {
+				display: block;
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="flex-container">
+		<div id="eins">Mein erster Abschnitt!</div>
+		<div id="zwo">Mein zweiter Abschnitt!</div>
+	</div>
+	<div id="drei">Mein dritter Abschnitt!</div>
+</body>
+</html>
