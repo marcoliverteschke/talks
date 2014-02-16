@@ -167,7 +167,7 @@ Zusätzlich können über Event-Handler Ereignisse abgefragt werden. So kann das
 
 ![](images/03-html-css-javascript.png)
 
-Lassen sich viele Arbeiten gut mit reinem JavaScript erledigen, sind im Laufe der Jahre auch immer mehr Helfer-Bibliotheken wie jQuery, Prototype oder Mootools entstanden, die zum Beispiel mächtigere und flexiblere Möglichkeiten zum finden von Elementen und die schmerzlose Umsetzung komplexer Manipulationen bis hin zu Animationen bieten.
+Lassen sich viele Arbeiten gut mit reinem JavaScript erledigen, sind im Laufe der Jahre auch immer mehr Helfer-Bibliotheken wie jQuery, Prototype oder MooTools entstanden, die zum Beispiel mächtigere und flexiblere Möglichkeiten zum finden von Elementen und die schmerzlose Umsetzung komplexer Manipulationen bis hin zu Animationen bieten.
 
 Abseits der Ergänzung von Funktionalität auf ansonsten statischen Seiten, wird JavaScript für die unterschiedlichsten Zwecke eingesetzt. Der Less-CSS-Präprozessor bietet einen JavaScript-Helfer, der übergebenes Less auf Browserseite verarbeitet und in CSS umwandelt. Mit Modernizr können Entwickler den Browser auf das Vorhandensein einer Vielzahl von Features prüfen.
 
@@ -223,6 +223,8 @@ Orientierten sich die ursprünglichen HTML-Elemente noch stark an der Idee, der 
 * `<canvas>`: „Leinwand” zur dynamischen Erzeugung von Grafiken, z.B. für Graphen oder Animationen.
 * `<main>`: Der Haupt-Seiteninhalt
 
+Ebenfalls neu sind neue Arten von Eingabefeldern, z.B. zur Auswahl von Datumswerten oder Farben, oder die simple Unterscheidung zwischen einem Textfeld und einem Textfeld für E-Mail-Adressen. Das macht sich z.B. auf Samrtphones durch eine andere Tastatur bemerkbar.
+
 Andere Elemente, deren Verwendung bereits seit HTML 4.01 nicht mehr empfohlen wurde, werden in HTML5 nicht mehr unterstützt. Dies betrifft insbesondere darstellende Elemente wie `<font>`, `<big>` oder `<center>`.
 
 Darüber hinaus beinhaltet HTML5 Spezifikationen für zahlreiche Entwicklerschnittstellen:
@@ -234,7 +236,6 @@ Darüber hinaus beinhaltet HTML5 Spezifikationen für zahlreiche Entwicklerschni
 * Web Storage: Ein Key-Value Speicher ähnlich Cookies, mit größerem Speichervermögen und verbesserter API
 * Web Workers: Hintergrundprozesse für HTML-Anwendungen.
 * Geolocation
-* Web SQL Database
 * File API: Asynchrone Drag & Drop Dateitransfers vom Desktop ohne vorgeschalteten Upload.
 
 #### CSS 3 und mehr
