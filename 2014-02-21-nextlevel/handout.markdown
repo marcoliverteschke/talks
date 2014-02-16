@@ -75,7 +75,7 @@ Mit der Hilfe solcher Elemente wird aus dem eingangs gezeigten Textklumpen so et
 
 Und das sieht im Browser dann so aus:
 
-@TODO Bild Seite im Browser zeigen
+![](images/01-plain-html.png)
 
 #### CSS in Blitzgeschwindigkeit
 
@@ -135,7 +135,7 @@ h2 {
 
 Im Browser sieht das so aus:
 
-@TODO Styling im Browser
+![](images/02-html-and-css.png)
 
 #### JavaScript in Blitzgeschwindigkeit
 
@@ -165,9 +165,11 @@ Zusätzlich können über Event-Handler Ereignisse abgefragt werden. So kann das
 	}
 ```
 
+![](images/03-html-css-javascript.png)
+
 Lassen sich viele Arbeiten gut mit reinem JavaScript erledigen, sind im Laufe der Jahre auch immer mehr Helfer-Bibliotheken wie jQuery, Prototype oder Mootools entstanden, die zum Beispiel mächtigere und flexiblere Möglichkeiten zum finden von Elementen und die schmerzlose Umsetzung komplexer Manipulationen bis hin zu Animationen bieten.
 
-Abseits der Ergänzung von Funktionalität auf ansonsten statischen Seiten, wird JavaScript für die unterschiedlichsten Zwecke eingesetzt. Der LESS-CSS-Präprozessor bietet einen JavaScript-Helfer, der übergebenes LESS auf Browserseite verarbeitet und in CSS umwandelt. Mit Modernizr können Entwickler den Browser auf das Vorhandensein einer Vielzahl von Features prüfen.
+Abseits der Ergänzung von Funktionalität auf ansonsten statischen Seiten, wird JavaScript für die unterschiedlichsten Zwecke eingesetzt. Der Less-CSS-Präprozessor bietet einen JavaScript-Helfer, der übergebenes Less auf Browserseite verarbeitet und in CSS umwandelt. Mit Modernizr können Entwickler den Browser auf das Vorhandensein einer Vielzahl von Features prüfen.
 
 Und zu guter Letzt ist JavaScript in letzter Zeit mehr und mehr die Sprache der Wahl in serverseitigen Anwendungen geworden, z.B. für den Server node.js oder also Scripting-Sprache für die Datenbank Apache CouchDB.
 
@@ -338,25 +340,26 @@ Alle folgenden Styles gelten nun nur für Elemente, die in einem Eltern-Element 
 
 Jedes HTML-Element ist von einem Rechteck umgeben. Die einzelnen Bestandteile dieses Rechtecks (eigentlicher Inhalt, Innenabstand, Rahmen, Außenabstand) sind im sogenannten Box-Model definiert.
 
-@TODO Grafik Box Model wie SelfHTML
+![](images/04-box-modell.png)
+*Quelle: SelfHTML*
 
 Über die CSS-Eigenschaft `display` wird definiert, wie die Box eines Elements sich in Bezug auf ihre Umgebung verhalten soll.
 
 `display: block` sorgt dafür, dass das Element einen Absatz erzeugt. Das heißt zwischen dem aktuellen und dem folgenden Element wird ein Zeilenumbruch erzeugt. Innen- und Außenabstände werden horizontal wie vertikal berücksichtigt.
 
-@TODO Grafik display block
+![](images/05-display-block.png)
 
 `display: inline` lässt das Element dem umgebenden Textfluss folgen. Dies hat auch zur Folge, dass nur horizontale Abstände berücksichtigt werden.
 
-@TODO Grafik display inline
+![](images/06-display-inline.png)
 
 Die etwas neuere (CSS 2.1) Deklaration `display: inline-block` bildet eine Kombination aus den beiden vorherigen Werten, indem das Element zwar dem umgebenden Textfluss folgt, gleichzeitig aber alle Abstände berücksichtigt werden, als handelte es sich um ein Block-Element.
 
-@TODO Grafik display inline-block
+![](images/07-display-inline-block.png)
 
 Häufig kommen wir in Szenarien, in denen ein Element wie ein Block formatiert werden soll, gleichzeitig aber innerhalb des Textflusses nach einer Seite hin ausgerichtet sein soll. Das klassische Beispiel ist hier ein Bild, das Abstände nach außen haben und in einem Textabsatz rechts in der Ecke sitzen soll:
 
-@TODO floatendes Bild
+![](images/08-floating-image.png)
 
 Hier kommt die CSS-Eigenschaft `float` zum Einsatz. Sie ermöglicht es, Elemente aus dem normalen Textfluss zu lösen und sie links oder rechts „schweben“ zu lassen. Der umgebende Text umfließt dieses schwebende Element daraufhin.
 
@@ -396,6 +399,8 @@ Bauen wir uns ein einfaches Zwei-Spalten-Layout:
 </style>
 ```
 
+![](images/09-2-cols.png)
+
 Ergänzend eine Media query, um ab einer bestimmten Breite jede Spalte in eine eigene Zeile in voller Breite umspringen zu lassen, weil wir alle kleine Bildschirme in der Tasche haben:
 
 ```
@@ -406,6 +411,8 @@ Ergänzend eine Media query, um ab einer bestimmten Breite jede Spalte in eine e
 	}
 }
 ```
+
+![](images/10-1-col.png)
 
 Diese Lösung ist natürlich schon und gut und funktioniert auch seit Jahren in den meisten Fällen. Aber letzendlich wird auch hier natürlich lediglich eine Eigenschaft zum Ausrichten von Elementen im Textfluss zweckentfremded, um damit ganze Seiten zu layouten.
 
@@ -443,7 +450,7 @@ Die Breite des Containers wird basierend auf den `flex`-Werten entsprechend aufg
 
 ##### CSS-Präprozessoren
 
-Seit ein paar Jahren groß im Kommen sind CSS-Präprozessoren. Erwähnenswert sind hier zum Beispiel LESS, Sass und Stylus. All diesen Tools gemein ist, dass nicht mehr reines CSS geschrieben wird. Vielmehr schreibt der Entwickler eine Datei in einer dem jeweiligen Präprozessor eigenen Syntax. Diese wird dann vor der Auslieferung an den Browser von einem Tool auf der Kommandozeile, einem JavaScript oder einem PHP-Skript in CSS umgewandelt.
+Seit ein paar Jahren groß im Kommen sind CSS-Präprozessoren. Erwähnenswert sind hier zum Beispiel Less, Sass und Stylus. All diesen Tools gemein ist, dass nicht mehr reines CSS geschrieben wird. Vielmehr schreibt der Entwickler eine Datei in einer dem jeweiligen Präprozessor eigenen Syntax. Diese wird dann vor der Auslieferung an den Browser von einem Tool auf der Kommandozeile, einem JavaScript oder einem PHP-Skript in CSS umgewandelt.
 
 Was ist an Präprozessoren jetzt so toll? Auf großen Seiten kann CSS schnell ausufern. Selektoren können ewig lang werden. Viel zu viele Elemente teilen sich gemeinsame Styles, die sich nun immer wieder wiederholen. Werte, z.B. Farben, die aufeinander abgestimmt sind, müssen bei Änderung des Grundwertes neu berechnet und eingetragen werden, gerne auch wieder an 50 Stellen im Code.
 
@@ -541,7 +548,7 @@ a:hover {
 }
 ```
 
-Diese und andere Features von CSS-Präprozessoren (im Fall dieser Beispiele LESS) bieten dem Developer ein sehr mächtiges Werkzeug, um den an sich starren CSS-Code dynamischer und effizienter zu entwickeln.
+Diese und andere Features von CSS-Präprozessoren (im Fall dieser Beispiele Less) bieten dem Developer ein sehr mächtiges Werkzeug, um den an sich starren CSS-Code dynamischer und effizienter zu entwickeln.
 
 ##### AJAX
 
@@ -691,8 +698,8 @@ Mein persönlicher Arbeitsablauf unterscheidet sich von Projekt zu Projekt, je n
 * TextMate 2 für Mac OS X ist der Code meiner Wahl
 * als Textumgebung verwende ich einen MAMP-Server (Mac, Apache, MySQL, PHP)
 * jQuery kommt in fast jedem Projekt zum Einsatz, ist bei CMS wie Drupal sowieso mit dabei
-* LESS ist der CSS-Präprozessor in unserem Haus
-* LESS Elements ist eine bezaubernde Sammlung an LESS-Mixins für Standard-Aufgaben wie Schatten, Animationen etc.
+* Less ist der CSS-Präprozessor in unserem Haus
+* LESS Elements ist eine bezaubernde Sammlung an Less-Mixins für Standard-Aufgaben wie Schatten, Animationen etc.
 * mit Modernizr befrage ich den Browser nach seinen Fähigkeiten und kann diese gezielt per CSS und JavaScript ansprechen
 * als CSS Reset verwende ich Normalize, da es das Default-Styling von Elementen erhält und lediglich für alle Browser angleicht
 * Selectivizr ermöglicht den Einsatz moderner CSS-Selektoren auch auf älteren Browsern
@@ -739,38 +746,38 @@ Seit 2007 ist er bei der *PLANWERK 6 websolutions GmbH* in der romantischen Nich
 
 #### Basics
 
-MDN Dokumentation
-Sitepoint Doctypes
-CSS Zen Garden
-jQuery
-Prototype
-Mootools
-Microformats
-hCard
-Die ganzen CSS-Dinger
+* [Mozilla Developer Network Web Technologies Dokumentation](https://developer.mozilla.org/en-US/docs/Web)
+* [SitePoint Doctypes](http://reference.sitepoint.com/html/doctypes)
+* [CSS Zen Garden](http://www.csszengarden.com)
+* [jQuery](http://jquery.com)
+* [MooTools](http://mootools.net)
+* [Microformats](http://microformats.org)
+* [hCard](http://microformats.org/wiki/hcard)
+* [HTML5: Differences from HTML4](http://www.w3.org/TR/html5-diff/)
+* [CSS current work & how to participate](http://www.w3.org/Style/CSS/current-work)
 
 #### Für Fortgeschrittene
 
-CSS Display MDN
-LESS
-Sass
-Stylus
+* [SELFHTML CSS/Box-Modell](http://wiki.selfhtml.org/wiki/CSS/Box-Modell)
+* [MDN display](https://developer.mozilla.org/en-US/docs/Web/CSS/display)
+* [MDN float](https://developer.mozilla.org/en-US/docs/Web/CSS/float)
+* [MDN Using CSS flexible boxes](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Flexible_boxes)
+* [Solved by Flexbox](http://philipwalton.github.io/solved-by-flexbox/)
+* [Less CSS-Präprozessor](http://lesscss.org)
+* [Sass CSS-Präprozessor](http://sass-lang.com)
+* [Stylus CSS-Präprozessor](http://learnboost.github.io/stylus/)
 
 #### Toolchain
 
-Conditional Comments
-Conditional HTML
-Progressive Enhancement
-Graceful Degradation
-Modernizr
-TextMate
-MAMP
-LESS
-LESS Elements
-jQuery
-Modernizr
-Normalize
-Selectivizr
+* [Conditional Comments](http://www.quirksmode.org/css/condcom.html)
+* [Conditional HTML](http://www.paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/)
+* [Graceful degradation versus progressive enhancement](http://www.w3.org/wiki/Graceful_degredation_versus_progressive_enhancement)
+* [Modernizr](http://modernizr.com)
+* [TextMate](https://github.com/textmate/textmate)
+* [MAMP](http://www.mamp.info/de/)
+* [LESS Elements](http://lesselements.com)
+* [Normalize](http://necolas.github.io/normalize.css/)
+* [Selectivizr](http://selectivizr.com)
 
 #### Recruiting
 
