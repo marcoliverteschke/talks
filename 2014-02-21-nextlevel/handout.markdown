@@ -2,6 +2,12 @@
 
 ## 21.02.2014 @ next level GmbH
 
+### Einleitung
+
+Dieses Handout fasst die Inhalte der Präsentation zum Thema „Front-End Development“ vom 21.02.2014 zusammen. Die Inhalte basieren zu einem großen Teil auf Fragen von Mitarbeitern der next level GmbH.
+
+Es wird sowohl das grundlegende Zusammenspiel von HTML, CSS und JavaScript umrissen, als auch neuere Entwicklungen in den Bereichen HTML5/CSS3, Server-seitige Technologien und Aspekte im Recruiting-Bereich.
+
 ### Die Basics
 
 #### HTML in Blitzgeschwindigkeit
@@ -14,19 +20,19 @@ Unsere Mission Die Idee, die uns antreibt. IT-Experten sind strukturiert und cha
 
 braucht es eine maschinenlesbare Möglichkeit, die Bestandteile dieses Texts, also Überschriften, Absätze, Links, Media-Elemente, als solche zu kennzeichnen.
 
-Idealer Weise steht am Beginn eines HTML-Dokument der Doctype, eine Zeile Text in der dem verarbeiten Programm, also in der Regel dem Browser mitgeteilt wird, an welche der diversen HTML-Syntaxen sich das folgende Dokument orientiert. Das sieht dann zum Beispiel so aus:
+Idealer Weise steht am Beginn eines HTML-Dokuments der Doctype, eine Zeile Text in der dem verarbeiten Programm, also in der Regel dem Browser mitgeteilt wird, an welche der diversen HTML-Syntaxen sich das folgende Dokument orientiert. Das sieht dann zum Beispiel so aus:
 
-HTML 4.01 Strict (HTML-Syntax, invalide wenn nicht mehr zulässige HTML-Elemente verwendet werden)
+*HTML 4.01 Strict (HTML-Syntax, invalide wenn nicht mehr zulässige HTML-Elemente verwendet werden)*
 ```
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 ```
 
-XHTML 1.0 Transtional (XML-Syntax, valide auch wenn nicht mehr zulässige XHTML-Elemente verwendet werden)
+*XHTML 1.0 Transtional (XML-Syntax, valide auch wenn nicht mehr zulässige XHTML-Elemente verwendet werden)*
 ```
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 ```
 
-HTML5
+*HTML5*
 ```
 <!DOCTYPE html>
 ```
@@ -34,20 +40,21 @@ HTML5
 Jedes HTML-Dokument sollte in seinen Grundzügen folgenden Aufbau haben:
 
 ```
+<!DOCTYPE html>
 <html>
 	<!-- Das Wurzel-Element der Seite -->
 	<head>
-		<!-- Enthält Meta-Informationen über die aktuelle Seite, zum Beispiel den Titel, Angaben zur Sprache, Elemente für die Inhaltszusammenfassung, Schlüsselwörter, CSS-Style-Informationen -->
+		<!-- Erstes Kind-Element von <html>. Enthält Meta-Informationen über die aktuelle Seite, zum Beispiel den Titel, Angaben zur Sprache, Elemente für die Inhaltszusammenfassung, Schlüsselwörter, CSS-Style-Informationen -->
 	</head>
 	<body>
-		<!-- Hier gehört der Seiteninhalt hinein -->
+		<!-- Zweites Kind-Element von <html>. Hier gehört der Seiteninhalt hinein -->
 	</body>
 </html>
 ```
 
 Innerhalb des `<body>`-Elements finden wir den eigentlichen Inhalt der Seite, strukturiert mit Elementen wie diesen:
 
-* `<h1>`, „Heading Level 1“, die Hauptüberschrift; geht weiter bis zu `<h6>`
+* `<h1>`, „Heading Level 1“, die Hauptüberschrift; geht hierarchisch absteigend weiter bis zu `<h6>`
 * `<p>`, „Paragraph“, repräsentiert einen Textabsatz
 * `<a>`, „Anchor“, ein Link zu einer Stelle im aktuellen oder einem anderen Dokument
 * `<img>`, „Image”, ein Bild
@@ -79,7 +86,7 @@ Und das sieht im Browser dann so aus:
 
 #### CSS in Blitzgeschwindigkeit
 
-Das ist natürlich schön und gut, aber besonders ansehnlich ist die soeben gezeigte Seite ja nicht unbedingt. Wie kriegen wir diese Seite also so richtig sexy?
+Das ist natürlich schön und gut, aber besonders ansehnlich ist die gerade entstandene Seite ja nicht unbedingt. Wie kriegen wir diese Seite also so richtig sexy?
 
 In früheren Versionen von HTML gab es dafür eine Kombination aus HTML-Elementen und -Attributen, die Informationen über die darzustellende Optik enthielten.
 
@@ -88,27 +95,26 @@ Das `<font>`-Element zum Beispiel diente dazu, für einen bestimmten Textabschni
 Elemente wie `<table>` unterstützten eine ganze Reihe von Attributen, um ihre Optik zu beeinflussen:
 	
 ```
-<table align="left" bgcolor="#ff0000" border="0" cellpadding="7" cellspacing="3">
-</table
+<table align="left" bgcolor="#ff0000" border="0" cellpadding="7" cellspacing="3"></table>
 ```
 
-Die mit dieser Art des Stylings verbundenen Probleme werden hoffentlich schnell klar. Angenommen unser Chef hat auf seinem Flug von Berlin nach Köln gelesen, dass Verdana eine viel geilere Schrift als Arial ist, so sitzen wir plötzlich den Rest des Wochenendes in unserem IT-Keller und ändern auf allen 700 Unterseiten unserer Webseite die jeweils 30 `<font>`-Elemente, nur um am Montag zu erfahren, dass unsere Tabellen in 2014 nicht mehr rot unterlegt sein sollen, sondern gefälligst blau. Wir haben ja sonst nix zu tun.
+Die mit dieser Art des Stylings verbundenen Probleme werden hoffentlich schnell klar. Angenommen unser Chef hat auf seinem Flug von Berlin nach Köln gelesen, dass Verdana eine viel geilere Schrift als Arial ist, so sitzen wir plötzlich den Rest des Wochenendes in unserem IT-Keller und ändern auf allen 700 Unterseiten unserer Webseite die jeweils 30 `<font>`-Elemente, nur um am Montag zu erfahren, dass unsere Tabellen in 2014 natürlich nicht mehr rot unterlegt sind, sondern gefälligst blau. Wir haben ja sonst nix zu tun.
 	
 Da nicht alle ITler Masochisten sind, gab es schon früh verschiedenste Ansätze, das Styling von strukturierten Dokumenten zentral zu steuern. Einer dieser Ansätze entwickelte sich im Laufe der Zeit zu CSS Level 1, dessen finale Spezifikation 1996 vom W3C veröffentlicht wurde.
 
-Mit CSS hat ein Entwickler nun die Möglichkeit, seine Seiteninhalte in separaten Dateien (oder über das `<style>`-Element direkt ins HTML eingebettet) optisch zu gestalten.
+Mit CSS hat ein Entwickler die Möglichkeit, seine Seiteninhalte in separaten Dateien (oder über das `<style>`-Element direkt ins HTML eingebettet) optisch zu gestalten.
 
-Vermutlich immer noch das beste Beispiel für die Macht von CSS ist die Seite csszengarden.com. Eine simple HTML-Seite, die für jeden Besucher frei zum Download bereitsteht, die durch von Usern erstellte Stylesheets die unterschiedliche, teilweise sehr ausgefallene Looks erhält.
+Vermutlich immer noch das beste Beispiel für die Macht von CSS ist die Seite csszengarden.com. Eine simple HTML-Seite, für jeden Besucher frei zum Download verfügbar, die durch von Usern erstellte Stylesheets die unterschiedlichsten, teilweise sehr ausgefallene Looks erhält.
+
+![](images/11-csszengarden.png)
 
 Wir ergänzen unsere Beispielseite aus dem HTML-Kapitel um ein paar Zeilen, um die Optik der Seite ein wenig zu verändern.
 
 ```
-…
 <head>
 	<link rel="stylesheet" type="text/css" href="nextlevel.css" />
 	<!-- Hier binden wir über ein <link>-Element das Stylesheet ein -->
 </head>
-…
 ```
 
 In der Datei nextlevel.css legen wir ein paar Style-Anweisungen fest:
@@ -139,47 +145,48 @@ Im Browser sieht das so aus:
 
 #### JavaScript in Blitzgeschwindigkeit
 
-JavaScript hat seine Anfänge Mitte der 90er Jahre bei Netscape. Sind HTML und CSS noch statische Angelegenheiten („so ist das Dokument aufgebaut”, und „so wird das Dokument dargestellt“), ist JavaScript eine echte Programmiersprache, mit der sich bei Bedarf auch hochkomplexe Applikationen schreiben lassen.
+JavaScript hat seine Anfänge Mitte der 90er Jahre bei Netscape. Sind HTML und CSS noch statische Angelegenheiten („so ist das Dokument aufgebaut”, und „so wird das Dokument dargestellt“), ist JavaScript eine echte Programmiersprache, mit der sich bei Bedarf auch komplexe Applikationen schreiben lassen.
 
 Ein zentrales Element ist hierbei das „Document Object Model“ (DOM). Hierin findet sich die Struktur des aktuellen HTML-Dokuments als in JavaScript verarbeitbares Objekt wieder. Einzelne Elemente des Dokuments können abgefragt und in ihren Attributen verändert werden:
 
 ```
-document.getElementById('content').className = 'langerContent';
+document.getElementById('content').className = 'meinContent';
 ```
 
 Zusätzlich können über Event-Handler Ereignisse abgefragt werden. So kann das Skript z.B. unterschiedlich reagieren, wenn der Benutzer den Mauszeiger über ein Element bewegt, klickt, oder ein Formular abschickt.
 
 ```
-	for(var allePTags = 0; allePTags < document.getElementsByTagName('p').length; allePTags++)
-	{
-		document.getElementsByTagName('p')[allePTags].className = 'closed'; // <p>-Tags "schließen"
-		document.getElementsByTagName('p')[allePTags].onclick = function(){
-			 // Beim Klick auf ein <p>-Element, auf/zu per Klasse regeln
-			if(this.className == 'open')
-			{
-				this.className = 'closed';
-			} else {
-				this.className = 'open';
-			}
-		};
-	}
+// alle Elemente vom Typ `<p>` durchlaufen	
+for(var allePTags = 0; allePTags < document.getElementsByTagName('p').length; allePTags++)
+{
+	document.getElementsByTagName('p')[allePTags].className = 'closed'; // <p>-Elementen "geschlossen"-Klasse zuweisen
+	document.getElementsByTagName('p')[allePTags].onclick = function(){
+		 // Beim Klick auf ein <p>-Element, auf/zu per Klasse regeln
+		if(this.className == 'open')
+		{
+			this.className = 'closed';
+		} else {
+			this.className = 'open';
+		}
+	};
+}
 ```
 
 ![](images/03-html-css-javascript.png)
 
-Lassen sich viele Arbeiten gut mit reinem JavaScript erledigen, sind im Laufe der Jahre auch immer mehr Helfer-Bibliotheken wie jQuery, Prototype oder MooTools entstanden, die zum Beispiel mächtigere und flexiblere Möglichkeiten zum finden von Elementen und die schmerzlose Umsetzung komplexer Manipulationen bis hin zu Animationen bieten.
+Lassen sich viele Arbeiten gut mit reinem JavaScript erledigen, sind im Laufe der Jahre auch immer mehr Helfer-Bibliotheken wie jQuery, Prototype oder MooTools entstanden, die zum Beispiel mächtigere und flexiblere Möglichkeiten zum Finden von Elementen und die schmerzlose Umsetzung komplexer Manipulationen bis hin zu Animationen bieten.
 
-Abseits der Ergänzung von Funktionalität auf ansonsten statischen Seiten, wird JavaScript für die unterschiedlichsten Zwecke eingesetzt. Der Less-CSS-Präprozessor bietet einen JavaScript-Helfer, der übergebenes Less auf Browserseite verarbeitet und in CSS umwandelt. Mit Modernizr können Entwickler den Browser auf das Vorhandensein einer Vielzahl von Features prüfen.
+Abseits der Ergänzung von Funktionalität auf ansonsten statischen Seiten, wird JavaScript für die unterschiedlichsten Zwecke eingesetzt. Der Less-CSS-Präprozessor bietet einen JavaScript-Helfer, der übergebenes Less auf Browserseite verarbeitet und in CSS umwandelt. Mit Modernizr können Entwickler den Browser auf das Vorhandensein einer Vielzahl von Features prüfen. Selectivizr durchsucht Stylesheets nach im aktuellen Browser nicht unterstützten Selektoren und empfindet diese per JavaScript nach.
 
-Und zu guter Letzt ist JavaScript in letzter Zeit mehr und mehr die Sprache der Wahl in serverseitigen Anwendungen geworden, z.B. für den Server node.js oder also Scripting-Sprache für die Datenbank Apache CouchDB.
+Und zu guter Letzt ist JavaScript in letzter Zeit mehr und mehr die Sprache der Wahl in serverseitigen Anwendungen geworden, z.B. für den Server node.js oder als Scripting-Sprache für die Datenbank Apache CouchDB.
 
 #### Semantisches HTML
 
-Da der grundlegende Sinn von HTML wie bereits erwähnt die Strukturierung von Textdaten ist, ergibt sich daraus auch die Bedeutung des Begriffs „semantisches HTML“. Schließlich hat jedes HTML-Element seine eigene Bedeutung. Klar ist es, gerade auch dank CSS, im Prinzip möglich, ein Dokument fast nur mit `<p>`-Elementen aufzubauen, aber das ist natürlich nicht Sinn der Sache.
+Da der grundlegende Sinn von HTML wie bereits erwähnt die Strukturierung von Textdaten ist, ergibt sich daraus auch die Bedeutung des Begriffs „semantisches HTML“. Schließlich hat jedes HTML-Element seine eigene Bedeutung. Im Prinzip wäre es auch möglich, ein Dokument fast nur mit `<p>`-Elementen aufzubauen, diese mit Klassen zu versehen und per CSS in jede Gestalt zu zwingen, aber das ist natürlich nicht Sinn der Sache.
 	
-Wenn ich ein Dokument habe, dann packe ich seinen Titel in ein `<h1>`, den Untertitel in eine `<h2>`. Tiefer gehende Abschnitte erhalten entsprechend ihrer Verschachtelungstiefe `<h3>` bis `<h6>`-Überschriften. Absätze kommen in `<p>`-Elemente. Wenn ich eine Textpassage hervorheben will, tue ich dies mit dem `<em>`-Element (Emphasis), geht es um eine besonders starke Hervorhebung (*wichtig* versus **wirklich** wichtig!).
+Wenn ich ein Dokument habe, dann packe ich seinen Titel in ein `<h1>`, den Untertitel in eine `<h2>`. Tiefer gehende Abschnitte erhalten entsprechend ihrer Verschachtelungstiefe `<h3>` bis `<h6>`-Überschriften. Absätze kommen in `<p>`-Elemente. Wenn ich eine Textpassage hervorheben will, tue ich dies mit dem `<em>`-Element (Emphasis), geht es um eine besonders starke Hervorhebung nutze ich `<strong>` (*wichtig* versus **wirklich** wichtig!).
 
-Mit HTML5 stehen Entwicklern zusätzliche Elemente zur Verfügung, wie `<article>`. Damit wird zum Beispiel angezeigt „hier drin befindet sich ein in sich abgeschlossener irgendwie gearteter Textbeitrag“.
+Mit HTML5 stehen Entwicklern zusätzliche Elemente zur Verfügung, wie etwa `<article>`. Damit wird zum Beispiel angezeigt „hier drin befindet sich ein in sich abgeschlossener irgendwie gearteter Textbeitrag“.
 
 Andere Anwendungsfälle von semantischer Textauszeichnung finden sich im Bereich der „Microformats“. Diese definieren Standard-Klassen, über die in normalem HTML nicht klar abbildbare Strukturen beschrieben werden können. Ein Beispiel hierfür ist das hCard-Format. In HTML gibt es keine eindeutige Methode, eine digitale Visitenkarte abzubilden. Unter Verwendung der hCard-Klassen wird dies möglich:
 
@@ -205,27 +212,27 @@ Andere Anwendungsfälle von semantischer Textauszeichnung finden sich im Bereich
 </div>
 ```
 
-Die so formatierten Daten wären nun z.B. für ein entsprechendes Browser-Plugin problemlos identifizierbar und angemessen darstellbar.
+Die so formatierten Daten wären nun z.B. für ein entsprechendes Browser-Plugin problemlos identifizierbar und entsprechend darstellbar.
 
 #### HTML5
 
-HTML5 ist grob seit 2007 in Arbeit (das politische Hick-Hack von W3C/WHATWG, HTMl5 und XHTML 2.0 soll hier mal außen vor bleiben) mit dem Ziel, 2014 endgültig als Standard verabschiedet zu werden.
+HTML5 ist grob seit 2007 in Arbeit (das politische Hick-Hack von W3C/WHATWG, HTML5 und XHTML 2.0 soll hier mal außen vor bleiben) mit dem Ziel, 2014 endgültig als Standard verabschiedet zu werden.
 
 HTML5 lässt sich grob aufteilen in Änderungen an der Auszeichnungssprache HTML selbst, sowie in die zahlreichen neuen APIs, die Entwicklern zur Verfügung stehen sollen.
 
-Orientierten sich die ursprünglichen HTML-Elemente noch stark an der Idee, der Strukturierung von Textdokumenten zu dienen, führt HTML5 viele Elemente ein, die im Hinblick auf Webseiten konzipiert wurden, z.B.:
+Orientierten sich die ursprünglichen HTML-Elemente noch stark an der Idee, der Strukturierung von vernetzten Textdokumenten zu dienen, führt HTML5 viele Elemente ein, die wirklich im Hinblick auf ihren Einsatz in Webseiten konzipiert wurden, z.B.:
 
-* `<section>`: Repräsentiert einen beliebigen Inhaltsabschnitt in einem Dokument oder einer Anwendung 
-* `<article>`: Ein selbständiges Stück Inhalt in einem Dokument, z.B. ein Blogeintrag.
-* `<header>`: Gruppierung von einleitenden oder der Navigation dienenden Informationen.
-* `<nav>`: Ein Bereich, der der Navigation dient.
-* `<video>, <audio>`: Multimedia-Elemente, mit Browser-internem Player und einer API für Player von Drittanbietern.
-* `<canvas>`: „Leinwand” zur dynamischen Erzeugung von Grafiken, z.B. für Graphen oder Animationen.
+* `<section>`: Repräsentiert einen beliebigen Inhaltsabschnitt in einem Dokument oder einer Anwendung
+* `<article>`: Ein selbständiges Stück Inhalt in einem Dokument, z.B. ein Blogeintrag
+* `<header>`: Gruppierung von einleitenden oder der Navigation dienenden Informationen
+* `<nav>`: Ein Bereich, der Navigationselemente enthält
+* `<video>, <audio>`: Multimedia-Elemente, mit Browser-internem Player und einer API für Player von Drittanbietern
+* `<canvas>`: „Leinwand” zur dynamischen Erzeugung von Grafiken, z.B. für Graphen oder Animationen
 * `<main>`: Der Haupt-Seiteninhalt
 
-Ebenfalls neu sind neue Arten von Eingabefeldern, z.B. zur Auswahl von Datumswerten oder Farben, oder die simple Unterscheidung zwischen einem Textfeld und einem Textfeld für E-Mail-Adressen. Das macht sich z.B. auf Samrtphones durch eine andere Tastatur bemerkbar.
+Ebenfalls neu sind zusätzliche Arten von Eingabefeldern, z.B. zur Auswahl von Datumswerten oder Farben, oder die simple Unterscheidung zwischen einem Textfeld und einem Textfeld für E-Mail-Adressen. Das macht sich z.B. auf Smartphones durch die Anzeige spezialisierter Tastaturen bemerkbar.
 
-Andere Elemente, deren Verwendung bereits seit HTML 4.01 nicht mehr empfohlen wurde, werden in HTML5 nicht mehr unterstützt. Dies betrifft insbesondere darstellende Elemente wie `<font>`, `<big>` oder `<center>`.
+Andere Elemente und Attribute, von deren Verwendung bereits seit HTML 4.01 abgeraten wurde, werden in HTML5 nicht mehr unterstützt. Dies betrifft insbesondere darstellende Elemente wie `<font>`, `<big>` oder `<center>`.
 
 Darüber hinaus beinhaltet HTML5 Spezifikationen für zahlreiche Entwicklerschnittstellen:
 
@@ -242,7 +249,7 @@ Darüber hinaus beinhaltet HTML5 Spezifikationen für zahlreiche Entwicklerschni
 
 Seit der Veröffentlichung der CSS Level 1 Empfehlungen 1996 wurde die Sprache beständig weiterentwickelt. Die aktuell verabschiedeten Standards sind Level 1, Level 2 und eine Revision von Level 2.
 
-Seit dem Jahr 2000 läuft die Arbeit an CSS Level 3 (CSS3). Dabei wird CSS3 nicht als in sich geschlossenes System entwickelt. Vielmehr wurde CSS3 in mehrere Untermodule aufgesplittet, die voneinander unabhängig entwickelt werden. Diese Entscheidung führte auch dazu, dass W3C 2012 bekanntgab, dass es kein CSS4 als solches geben wird, sondern dass vielmehr jedes einzelne Modul irgendwann seine ganz eigene nächste 4. Entwicklungsstufe erreichen wird.
+Seit dem Jahr 2000 läuft die Arbeit an CSS Level 3 (CSS3). Dabei wird CSS3 nicht als in sich geschlossenes System entwickelt. Vielmehr wurde CSS3 in mehrere Untermodule aufgesplittet, die voneinander unabhängig entwickelt werden. Diese Entscheidung führte auch dazu, dass das W3C 2012 bekanntgab, dass es kein CSS4 als solches geben wird, sondern dass vielmehr jedes einzelne Modul irgendwann seine ganz eigene nächste 4. Entwicklungsstufe erreichen wird.
 
 Unter der Überschrift „CSS3“ existiert eine Vielzahl von Modulen, von denen lediglich vier den Status „Recommendation“ haben, mit einigen weiteren Modulen in der Vorstufe zur „Recommendation“.
 
@@ -262,11 +269,11 @@ Weitere, noch nicht finalisierte Level 3 Features sind:
 
 ##### Media queries
 
-Media queries ermöglichen es, bestimmte Styles nur bei Erfüllen spezifizierter Umstänge gelten zu lassen.
+Media queries ermöglichen es, bestimmte Styles nur bei Erfüllen spezifizierter Umstände gelten zu lassen.
 
 ```
 @media screen and (max-width: 960px) {
-	/* alle Anweisungen in diesem Block werden nur auf Bildschirmen in einem Container von bis zu 960 Pixeln Breite angewendet */
+	/* alle Anweisungen in diesem Block werden nur auf Bildschirmen in einem Browserfenster von bis zu 960 Pixeln Breite angewendet */
 }
 ```
 
@@ -282,7 +289,7 @@ Media queries können gezielt verschiedene Medien-Typen wie Bildschirme, Ausdruc
 
 ##### Color Level 3
 
-Das Color Level 3 Modul beitet insbesondere neue Möglichkeiten, Farbwerte zu definieren.
+Das Color Level 3 Modul beitet insbesondere neue Möglichkeiten Farbwerte zu definieren.
 
 `rgba` ermöglicht zum Beispiel die Definition eines Rot/Grün/Blau-Farbwertes mit einem zusätzlichen Wert für Alpha-Transparenz:
 
@@ -328,10 +335,10 @@ In XML-verwandten Auszeichnungssprachen besteht die Möglichkeit, ein Dokument o
 Sind die Elemente in MathML noch alle eindeuting anders als in HTML benannt, gibt es leider nichts was verhindert, dass wir irgendwann mit einer anderen Syntax zu tun haben, nennen wir sie mal UnfugML, in der z.B. dem `<a>`-Element ein ganz anderer Zweck gegeben wird. Bis zur Einführung von CSS-Namespaces wäre dieses UnfugML-`<a>` wie HTML-`<a>`s dargestellt worden. Dank CSS-Namespaces können wir am Anfang eines separaten Stylesheet aber folgendes sagen:
 
 ```
-@namespace 'MistML';
+@namespace 'UnfugML';
 ```
 
-Alle folgenden Styles gelten nun nur für Elemente, die in einem Eltern-Element mit `xmlns="MistML"` erscheinen.
+Alle folgenden Styles gelten nun nur für Elemente, die in einem Eltern-Element mit `xmlns="UnfugML"` erscheinen.
 
 ### Für Fortgeschrittene
 
@@ -374,7 +381,7 @@ Mit `float`enden Elementen sind wir hier flexibler. Angenommen wir haben diese E
 <div id="drei">Mein dritter Abschnitt!</div>
 ```
 
-Mit Hilfe von `float` und Media Queries können wir diese Elemente dynamisch und responsiv layouten.
+Mit Hilfe von `float` können wir diese Elemente bequem layouten.
 
 Bauen wir uns ein einfaches Zwei-Spalten-Layout:
 
@@ -417,7 +424,7 @@ Ergänzend eine Media query, um ab einer bestimmten Breite jede Spalte in eine e
 
 Diese Lösung ist natürlich schon und gut und funktioniert auch seit Jahren in den meisten Fällen. Aber letzendlich wird auch hier natürlich lediglich eine Eigenschaft zum Ausrichten von Elementen im Textfluss zweckentfremded, um damit ganze Seiten zu layouten.
 
-Dieses Problem will das Flexbox-Modul lösen, das seit Kurzem in allen aktuellen Browserversionen unterstützt wird.
+Dieses Problem will das u.a. Flexbox-Modul lösen, das seit Kurzem in allen aktuellen Browserversionen unterstützt wird (und somit in 5 bis 10 Jahren so richtig echt in Kundenprojekten einsetzbar sein wird).
 
 Unsere Elemente strukturieren wir nun wie folgt:
 
@@ -449,9 +456,11 @@ div#zwo {
 
 Die Breite des Containers wird basierend auf den `flex`-Werten entsprechend aufgeteilt.
 
+![](images/09-2-cols.png)
+
 ##### CSS-Präprozessoren
 
-Seit ein paar Jahren groß im Kommen sind CSS-Präprozessoren. Erwähnenswert sind hier zum Beispiel Less, Sass und Stylus. All diesen Tools gemein ist, dass nicht mehr reines CSS geschrieben wird. Vielmehr schreibt der Entwickler eine Datei in einer dem jeweiligen Präprozessor eigenen Syntax. Diese wird dann vor der Auslieferung an den Browser von einem Tool auf der Kommandozeile, einem JavaScript oder einem PHP-Skript in CSS umgewandelt.
+Seit ein paar Jahren groß im Kommen sind CSS-Präprozessoren. Erwähnenswert sind hier Less, Sass und Stylus. All diesen Tools gemein ist, dass nicht mehr reines CSS geschrieben wird. Vielmehr schreibt der Entwickler eine Datei in einer dem jeweiligen Präprozessor eigenen Syntax. Diese wird dann vor der Auslieferung an den Browser von einem Tool auf der Kommandozeile, einem Script im Browser oder auf dem Server in CSS umgewandelt.
 
 Was ist an Präprozessoren jetzt so toll? Auf großen Seiten kann CSS schnell ausufern. Selektoren können ewig lang werden. Viel zu viele Elemente teilen sich gemeinsame Styles, die sich nun immer wieder wiederholen. Werte, z.B. Farben, die aufeinander abgestimmt sind, müssen bei Änderung des Grundwertes neu berechnet und eingetragen werden, gerne auch wieder an 50 Stellen im Code.
 
@@ -488,13 +497,21 @@ wird zu
 ```
 $text-color: #444444;
 
-body, a {
+body {
+	color: $text-color;
+}
+
+a {
 	color: $text-color;
 }
 
 wird zu
 
-body, a {
+body {
+	color: #444444;
+}
+
+a {
 	color: #444444;
 }
 
@@ -565,7 +582,7 @@ Klar, aber deswegen gibt es ja AJAX (Asynchronous JavaScript and XML). AJAX biet
 
 Und wie geht das nun?
 
-Seit Internet Explorer 5 existiert das XMLHttpRequest-Objekt in JavaScript. Andere Browser haben dieses Feature wegen extremer Geilheit schnell nachgebaut. Dieses Objekt kann im Code einer JavaScript-Anwendung konfiguriert werden, und schickt dann eine Anfrage an den Server. Je nach erhaltener Antwort kann das Skript dann entsprechend reagieren:
+Bereits seit Version 5 des geschätzten Internet Explorers existiert das XMLHttpRequest-Objekt in JavaScript. Andere Browserhersteller haben dieses Feature seinerzeit wegen extremer Nützlichkeit schnell nachgebaut. Dieses Objekt kann im Code einer JavaScript-Anwendung konfiguriert werden, und schickt in der Folge eine Anfrage an den Server. Je nach erhaltener Antwort kann das Skript dann entsprechend reagieren:
 
 ```
 var xmlHttp = null;
@@ -596,7 +613,7 @@ if (xmlHttp) {
 }
 ```
 
-Das ist natürlich eine ganze Menge Code für eine simple und auch recht häufig gebrauchte Anfrage. Außerdem müssen wir natürlich auch entsprechend reagieren, wenn der readyState andere Werte annimmt. Deswegen haben JavaScript-Libraries wie jQuery fertige AJAX-Helfer-Funktionen an Bord, die das inzwischen alltäglich gewordene Absenden asynchroner Abfragen bedeutend erleichtern:
+Das ist natürlich eine ganze Menge Code für eine simple und auch recht häufig gebrauchte Anfrage. Außerdem müssen wir natürlich auch entsprechend reagieren, wenn der `readyState` andere Werte annimmt. Deswegen haben JavaScript-Libraries wie jQuery fertige AJAX-Helfer-Funktionen an Bord, die das inzwischen alltäglich gewordene Absenden asynchroner Abfragen bedeutend erleichtern:
 
 ```
 $.get('beispiel.xml', function(data){
@@ -617,29 +634,25 @@ Die klassische Web-basierte Anwendung oder auch eine normale Webseite ist meist 
 * HTML-Seiten werden gebaut
 * HTML wird an Browser geschickt
 * Browser fragt verlinktes CSS, JS, Medien ab
-* da ist die Seite
+* fertig ist die Seite
 
 Moderne Anwendungen können inzwischen in großen Teilen oder sogar komplett Client-seitig existieren, der Server wird zum reinen Daten-Lieferanten:
 
 * Server liefert eine fast leere HTML-Seite aus
 * CSS und JavaScript werden abgerufen
-* JavaScript enthält Großteil der Anwendungslogik
+* JavaScript enthält den Großteil der Anwendungslogik
 * JavaScript fragt vom Server Daten ab
 * JavaScript injiziert Templates für Seitenelemente
 
-HTML5 Features wie Datenbanken im Browser können theoretisch sogar die Anfragen in Richtung des Servers minimiert werden, indem wir die Datenbank einmal beim initialen Aufruf laden und danach auf die im Browser gelagerten Daten zurückgreifen. Damit wäre unsere Anwendung, solange die Daten aktuell sind, unabhängig von der Qualität des verfügbaren Netzwerks.
+Dank HTML5-Features wie Datenbanken im Browser können eines Tages theoretisch sogar die Anfragen in Richtung des Servers minimiert werden, indem wir die Datenbank einmal beim initialen Aufruf laden und danach auf die im Browser gelagerten Daten zurückgreifen. Damit wäre unsere Anwendung, solange die Daten aktuell sind, unabhängig von der Qualität des verfügbaren Netzwerks.
 
-Was hier letztendlich gesagt sein soll ist, dass es ganz auf die jeweilige Anwendung ankommt, wo das Front-End und das Back-End ihre Grenzen haben.
+Was hier letztendlich aber gesagt sein soll ist, dass es ganz auf die jeweilige Anwendung ankommt, wo das Front-End und das Back-End ihre Grenzen haben.
 
 ##### Welche Technologien wo?
 
-Grundsätzlich lässt sich sagen, dass in der theorie so ziemlich jede Programmiersprache im Front- wie im Back-End laufen *könnte*, solange die entsprechende Laufzeitumgebung vorhanden ist. Wenn irgendwer bei Microsoft einen Hitzschlag erleidet und Internet Explorer 12 mit einer Umgebung für COBOL ausliefert, ist COBOL schlagartig eine Front-End-Sprache.
+Grundsätzlich lässt sich sagen, dass in der Theorie so ziemlich jede Programmiersprache im Front- wie im Back-End laufen *könnte*, solange die entsprechende Laufzeitumgebung vorhanden ist. Wenn irgendwer bei Microsoft einen Hitzschlag erleidet und Internet Explorer 12 mit einer Umgebung für COBOL ausliefert, ist COBOL schlagartig eine Front-End-Sprache.
 
-Client- wie Server-seitig haben sich im Laufe der Zeit einige Sprachen als Standards etabliert. Im Browser sind dies:
-
-* JavaScript, nativ in fast allen Browsern
-* Flash bzw. ActionScript, mit dem entsprechenden Plugin versteht sich
-* Java, ebenfalls mit Plugin
+Client- wie Server-seitig haben sich im Laufe der Zeit einige Sprachen als Standards etabliert. Im Browser ist dies eigentlich nur JavaScript mit nativer Unterstützung in allen relevanten Browsern. Flash / Actionscript und Java sind zwar auch vertreten, benötigen aber Plugins und sind gerade im mobilen Web letztendlich schon irrelevant.
 
 Auf dem Server ist die Vielfalt deutlich größer, hier sind unter anderem verbreitet:
 
@@ -656,17 +669,17 @@ Ja, im Jahr 2009 wurde die erste Version der Node.js-Plattform veröffentlicht. 
 
 Die Architektur von Node.js ist darauf ausgelegt, Anfragen und Antworten möglichst schnell vom zentralen Server-Prozess fort zu delegieren. So ist die Server-Anwendung schneller wieder ansprechbar als in anderen Architekturen, in denen eine Anfrage einen kompletten Prozess belegt, bis sie komplett beantwortet ist.
 
-Zudem ist das Umfeld von Node.js voll von Implementierungen von WebSockets. WebSockets ist grob gesagt eine Standleitung vom Browser zum Server. War es bisher so, dass eine Anwendung, die aktuelle Daten vom Server wollte, regelmäßig AJAX-Anfragen stellen musste, so bieten WebSockets die Möglichkeit, dass der Server bei Änderungen entsprechende Informationen direkt an verbundene Clients pusht.
+Zudem existieren im Umfeld von Node.js zahlreiche Implementierungen von WebSockets. WebSockets ist grob gesagt eine Standleitung vom Browser zum Server. War es bisher so, dass eine Anwendung, die aktuelle Daten vom Server wollte, regelmäßig AJAX-Anfragen stellen musste, so bieten WebSockets die Möglichkeit, dass der Server bei Änderungen entsprechende Informationen direkt an verbundene Clients pusht.
 
 ##### CMS für HTML-Schubser
 
 >  Wie wichtig sind Contentmanagement-Systeme in der Frontend Entwicklung […]?
 
-Content Management Systeme (CMS) sind natürlich sehr wichtig. Extrem viele Webseiten basieren auf CMS wie Wordpress, TYPO3, Drupal etc.
+Content Management Systeme (CMS) sind natürlich sehr wichtig. Viele Webseiten basieren auf CMS wie Wordpress, TYPO3, Drupal etc.
 
-Front-End-Entwickler sollten sich in den in ihrem Umfeld gebräuchlichen CMS gut auskennen. Schließlich sind sie in gewisser Hinsicht dem jeweiligen System ausgeliefert, bzw. dem Output, den das jeweilige CMS produziert.
+Front-End-Entwickler sollten sich in den in ihrem Umfeld gebräuchlichen CMS gut auskennen. Schließlich sind sie in gewisser Hinsicht dem jeweiligen System ausgeliefert, bzw. dem Output, den das CMS produziert.
 
-Das heißt, es liegt oft auch in der Verantwortung des Entwicklers zu erkennen, ob ein vorgeschlagenes Design so umsetzbar ist, oder ob irgendeine Eigenart von Drupal verhindert, dass wir bestimmte Elemente unbedingt an eine bestimmte Stelle setzen.
+Das heißt auch, es liegt oft in der Verantwortung des Entwicklers zu erkennen, ob ein vorgeschlagenes Design so umsetzbar ist, oder ob irgendeine Eigenart von Drupal verhindert, dass wir bestimmte Elemente unbedingt an genau die vorgeschlagene Stelle setzen.
 
 Und wenn es um die eigentliche Umsetzung geht, muss der Entwickler natürlich das Templating-System des jeweiligen CMS kennen. Was nützt schließlich das tollste HTML, wenn ich nicht weiß, wie ich daraus ein funktionierendes Wordpress-Theme baue?
 
@@ -674,7 +687,7 @@ Und wenn es um die eigentliche Umsetzung geht, muss der Entwickler natürlich da
 
 > […] und wie viel Backend sollte ein Frontend Dev können?
 
-Ganz ehrlich? Das kommt meiner Meinung nach sehr auf die Arbeitsteilung im konkreten Unternehmen an. Ich persönlich würde auch in einer reinen Front-End-Position so viel wie möglich von Back-End des Systems, mit dem ich arbeite, verstehen wollen, einfach weil ich ein Gefühl dafür haben will, woher die Inhalte kommen, die ich strukturieren und stylen soll. Ich denke, dass es den meisten Entwicklern so gehen würde. Aber verallgemeinern lässt sich das sicher nicht.
+Das kommt meiner Meinung nach sehr auf die Arbeitsteilung im konkreten Unternehmen an. Ich persönlich würde auch in einer reinen Front-End-Position so viel wie möglich von Back-End des Systems, mit dem ich arbeite verstehen wollen einfach weil ich ein Gefühl dafür haben will, woher die Inhalte kommen, die ich strukturieren und stylen soll. Ich denke, dass es vielen Entwicklern so geht. Aber verallgemeinern lässt sich das sicher nicht.
 
 ### Toolchain
 
@@ -684,13 +697,13 @@ Die Frage lässt sich leider beim besten Willen nicht allgemeingültig beantwort
 
 Es gibt keine spezifischen Tools, die *jeder* Developer beherrschen sollte, weil der Workflow jeder Firma, jedes Teams, jedes Entwicklers grundverschieden sein kann. Jenseits von der Erwartung, dass der Entwickler mit absoluter Standardsoftware wie Office und Photoshop umgehen können sollte, wird es schnell schwammig. Arbeitet der Entwickler in TextMate? BBEdit? Textpad++? Eclipse? NetBeans? Letztlich ist es egal, solange am Ende guter Code dabei herumkommt.
 
-Der dabei entstehende Output sollte valide sein (HTML ist ein Muss, CSS wäre schön). Der Code sollte so gut es geht selbsterklärend sein (Was macht Variable i?) und wenn’s geht auch ein wenig dokumentiert, zumindest an potentiellen Knackpunkten.
+Der dabei entstehende Output sollte valide sein (HTML ist ein Muss, CSS wäre schön). Der Code sollte so gut es geht selbsterklärend sein (Was macht die Variable $i?) und wenn’s geht auch ein wenig dokumentiert, zumindest an potentiellen Knackpunkten.
 
 Der Entwickler sollte auch eine Strategie für Cross-Browser-Output haben. Sei es, dass er gezielt per Conditional Comments Internet Explorer Versionen anspricht. Oder dass er über Progressive Enhancement / Graceful Degradation mit Tools wie Modernizr dafür sorgt, dass Browser immer nur versuchen, eine Seite so darzustellen, wie ihre Fähigkeiten es auch zulassen.
 
 Kaum vermeiden lässt sich heutzutage auch, dass der Entwickler Ideen hat, mit dem mobile Web umzugehen. Soll heißen, er kann Seiten für Tablets und Smartphones umsetzen, z.B. unter Verwendung von Media Queries. Er weiß, welche Bedienkonzepte für Touch-Displays geeignet sind. Er hat Lösungen parat für Problemfälle wie die Darstellung von großen Tabellen auf kleinen Bildschirmen.
 
-Zu guter letzt ist es nur hilfreich, wenn der Entwickler mit mindestens *einem* Versionierungssystem wie CVS, SVN / Subversion oder Git gearbeitet hat. Welches genau? Egal, solange er sich überhaupt angewöhnt hat, seine Arbeit brav und wie ein echter Teamplayer einzuchecken.
+Zu guter Letzt ist es nur hilfreich, wenn der Entwickler mit mindestens *einem* Versionierungssystem wie CVS, SVN / Subversion oder Git gearbeitet hat. Welches genau? Egal, solange er sich überhaupt angewöhnt hat, seine Arbeit brav und wie ein echter Teamplayer einzuchecken.
 
 #### Mein ganz persönliches Toolkit
 
@@ -717,7 +730,7 @@ Es empfiehlt sich selbstverständlich immer, ein wenig das relevante Grundwissen
 
 Überhaupt sollte ein Kandidat in der Lage sein, aus dem Stegreif über aktuelle Entwicklungen in seiner Branche zu sprechen, die ihn interessieren. Was zählt ist das Interesse, der Wille zur Weiterentwicklung.
 
-Oft fällt es Bewerbern schwer, zu ihren Schwächen zu stehen. Einfach mal einräumen, dass man sich mit HTML5 vielleicht noch nicht so sehr auseinandergesetzt hat? *Undenkbar!* Dann lieber erzählen, dass, ja klar, man sich mit HTML5 auseinander gesetzt hat, es aber noch voller gefährlicher, unerprobter Technologien stecke und somit höchste Vorsicht geboten sei. Bei solchen Spinnereien, und generell bei sehr absolut formulierten Aussagen, wirkt eine einfache Bitte, das doch mal näher zu erklären, wahre Wunder.
+Oft fällt es Bewerbern schwer, zu ihren Schwächen zu stehen. Einfach mal einräumen, dass man sich mit HTML5 vielleicht noch nicht so sehr auseinandergesetzt hat? *Undenkbar!* Dann lieber erzählen, dass man, ja klar, sich mit HTML5 voll gut auskennt, es aber noch voller gefährlicher, unerprobter Technologien stecke und somit höchste Vorsicht geboten sei. Bei solchen Spinnereien, und generell bei sehr absolut formulierten Aussagen, wirkt eine einfache Bitte, das doch mal näher zu erklären, wahre Wunder.
 
 Überhaupt ist es das Sahnehäubchen auf dem Entwickler-Cupcake, wenn er nicht nur 50 Fachbegriffe pro Minute absondern kann, sondern auch in der Lage ist, die gleichen Themen auch mal verständlich zu erklären. Fast, als wäre er ein ganz normaler Mensch.
 
