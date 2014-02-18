@@ -726,7 +726,7 @@ Diese Bibliotheken und Skripte finden sich eigentlich in jedem Projekt wieder, d
 
 Ein wasserdichtes System, um einen wirklich guten Front-End Developer zu finden, kann ich hier leider nicht offerieren. Was folgt sind jedoch einige Beobachtungen aus den letzten Jahren, die vielleicht in die richtige Richtung weisen mögen.
 
-Es empfiehlt sich selbstverständlich immer, ein wenig das relevante Grundwissen abzuklopfen. Es ist klar, dass der technische Sachverstand des Kandidaten den des Recruiters übersteigt (hoffen wir es mal!), aber mit Grundkenntnissen in den relevanten Themengebieten sollte es zumindest möglich sein, absoluten Bullshit zu erkennen.
+Es empfiehlt sich selbstverständlich immer, ein wenig das relevante Grundwissen abzuklopfen. Es ist klar, dass der technische Sachverstand des Kandidaten den des Recruiters übersteigt (hoffen wir es mal!), aber mit Grundkenntnissen in den relevanten Themengebieten sollte es zumindest möglich sein, absoluten Unfug zu erkennen.
 
 Überhaupt sollte ein Kandidat in der Lage sein, aus dem Stegreif über aktuelle Entwicklungen in seiner Branche zu sprechen, die ihn interessieren. Was zählt ist das Interesse, der Wille zur Weiterentwicklung.
 
@@ -742,7 +742,9 @@ Auch dieses Thema lässt sich (leider, leider) nicht gut allgemein abhandeln. Gu
 
 Ist die Referenzseite zweckmäßig und navigierbar? Der Punkt sollte sich von selbst verstehen. Vermittelt der Kandidat mit seiner Referenz den Eindruck, er könnte eine Seite herstellen, die gut zu bedienen ist? Bei der schnell klar wird, was die Funktion der Seite ist und wie ich diese Funktion nutzen kann?
 
-Ist der Code valide? Niemand freut sich über invalides HTML. Google bestraft diesen Unfug. Browser zeigen Inhalte falsch an oder rechnen sich einen Wolf, um die Fehler im Code zu erkennen und zu kompensieren. Evtl. nicht semantisches Markup erschwert es z.B. Screenreadern, die Inhalte vernünftig zu verarbeiten. *Niemand* freit sich über invalides HTML.
+Ist der Code valide? Niemand freut sich über invalides HTML. Google bestraft diesen Unfug. Browser zeigen Inhalte falsch an oder rechnen sich einen Wolf, um die Fehler im Code zu erkennen und zu kompensieren. Evtl. nicht semantisches Markup erschwert es z.B. Screenreadern, die Inhalte vernünftig zu verarbeiten. *Niemand* freut sich über invalides HTML.
+
+Und ist der Code zeitgemäß? Niemand verlangt, dass die Referenzseite voll von CSS-Transforms ist und per Flexbox inklusive Float-Fallback aufgebaut wurde, aber zumindest die Semantik der Elemente sollte stimmen, Tabellen sollten nur für Ergebnisse in Hallenfußballturnieren genutzt werden, und die Optik sollte aus CSS kommen, nicht aus dreifach verschachtelten `<big>`-Tags.
 
 Hat die Seite einen akzeptablen PageSpeed Score? Was nützt die schönste Seite, wenn sie aus welchen Gründen auch immer völlig unperformant ist? PageSpeed, so wie z.B. auch YSlow, ist ein praktisches Hilfsmittel, Optimierungsbedarf an Webseiten festzustellen. Seien es zu große Bilder, langsame Skripte oder verschenkte Bandbreite durch unkomprimierte Inhalte. Wenn ein Kandidat Referenzen mit PageSpeed Resultaten im roten Bereich vorlegt, sollte er besser eine verdammt gute Ausrede parat haben.
 
